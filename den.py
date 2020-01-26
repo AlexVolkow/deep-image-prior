@@ -42,7 +42,7 @@ if fname == 'data/denoising/snail.jpg':
     if PLOT:
         plot_image_grid([img_np], 4, 5);
 
-elif fname == 'data/denoising/F16_GT.png':
+elif fname == 'data/denoising/F16_GT.png' or fname == 'data/denoising/3_result.png':
     # Add synthetic noise
     img_pil = crop_image(get_image(fname, imsize)[0], d=32)
     img_np = pil_to_np(img_pil)
@@ -79,7 +79,7 @@ if fname == 'data/denoising/snail.jpg':
 
     net = net.type(dtype)
 
-elif fname == 'data/denoising/F16_GT.png':
+elif fname == 'data/denoising/F16_GT.png' or fname == 'data/denoising/3_result.png':
     num_iter = 3000
     input_depth = 32
     figsize = 4
