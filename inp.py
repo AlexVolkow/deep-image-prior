@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 
+import torch
+print(torch.cuda.current_device())
+
 import numpy as np
 from models.resnet import ResNet
 from models.unet import UNet
