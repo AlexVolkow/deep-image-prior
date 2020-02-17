@@ -6,13 +6,11 @@ from subprocess import call
 import matplotlib.pyplot as plt
 
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '4'
+#os.environ['CUDA_VISIBLE_DEVICES'] = '4'
 
 import torch
-print(torch.cuda.device_count())
-torch.cuda.set_device(1)
-print('__Devices')
-call(["nvidia-smi", "--format=csv", "--query-gpu=index,name,driver_version,memory.total,memory.used,memory.free"])
+device = torch.device('cuda:1')
+torch.cuda.set_device(device)
 print('Active CUDA Device: GPU', torch.cuda.current_device())
 print(torch.cuda.current_device())
 
@@ -44,8 +42,8 @@ dim_div_by = 64
 # mask_path = 'data/inpainting/library_mask.png'
 
 ## Fig 7 (top)
-img_path = 'data/inpainting/kate.png'
-mask_path = 'data/inpainting/kate_mask.png'
+img_path = 'data/inpainting/source.JPG'
+mask_path = 'data/inpainting/mask.JPG'
 
 # Another text inpainting example
 # img_path  = 'data/inpainting/peppers.png'
@@ -153,7 +151,21 @@ elif 'library.png' in img_path:
     else:
         assert False
 else:
-    assert False
+    INPUT = 'meshgrid'
+    input_depth = 2
+    LR = 0.01
+    num_iter = 5001
+    param_noise = False
+    show_every = 50
+    figsize = 5
+    reg_noise_std = 0.03
+
+    net = skip(input_depth, img_np.shape[0],
+               num_channels_down=[128] * 5,
+               num_channels_up=[128] * 5,
+               num_channels_skip=[0] * 5,
+               upsample_mode='nearest', filter_skip_size=1, filter_size_up=3, filter_size_down=3,
+               need_sigmoid=True, need_bias=True, pad=pad, act_fun='LeakyReLU').type(dtype)
 
 net = net.type(dtype)
 net_input = get_noise(input_depth, INPUT, img_np.shape[1:]).type(dtype)
@@ -205,5 +217,5 @@ p = get_params(OPT_OVER, net, net_input)
 optimize(OPTIMIZER, p, closure, LR, num_iter)
 
 out_np = torch_to_np(net(net_input))
-np.save("asd.png", out_np)
-plot_image_grid([out_np], factor=5)
+img_result = np_to_pil(out_np)
+img_result.save("output.jpg")
