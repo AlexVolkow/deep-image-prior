@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import torchvision
 import sys
+import PIL.ImageOps
 
 import numpy as np
 from PIL import Image
@@ -86,19 +87,21 @@ def plot_image_grid(images_np, nrow =8, factor=1, interpolation='lanczos'):
     
     return grid
 
-def load(path):
+def load(path, invert=False):
     """Load PIL image."""
     img = Image.open(path)
+    if invert:
+        img = PIL.ImageOps.invert(img)
     return img
 
-def get_image(path, imsize=-1):
+def get_image(path, imsize=-1, invert=False):
     """Load an image and resize to a cpecific size. 
 
     Args: 
         path: path to image
         imsize: tuple or scalar with dimensions; -1 for `no resize`
     """
-    img = load(path)
+    img = load(path, invert)
 
     if isinstance(imsize, int):
         imsize = (imsize, imsize)

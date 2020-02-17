@@ -52,18 +52,17 @@ mask_path = 'data/inpainting/mask.JPG'
 NET_TYPE = 'skip_depth6'  # one of skip_depth4|skip_depth2|UNET|ResNet
 
 img_pil, img_np = get_image(img_path, imsize)
-img_mask_pil, img_mask_np = get_image(mask_path, imsize)
+img_mask_pil, img_mask_np = get_image(mask_path, imsize, invert=True)
 
 img_mask_pil = crop_image(img_mask_pil, dim_div_by)
 img_pil = crop_image(img_pil, dim_div_by)
 
 img_np = pil_to_np(img_pil)
 img_mask_np = pil_to_np(img_mask_pil)
-img_mask_np = inverse_mask(img_mask_np)
 
 img_mask_var = np_to_torch(img_mask_np).type(dtype)
 
-plot_image_grid([img_np, img_mask_np, img_mask_np * img_np], 3, 11);
+plot_image_grid([img_np, img_mask_np, img_mask_np * img_np], 3, 11)
 
 
 pad = 'reflection'  # 'zero'
