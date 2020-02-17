@@ -1,12 +1,19 @@
 
 from __future__ import print_function
+
+from subprocess import call
+
 import matplotlib.pyplot as plt
 
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '4'
 
 import torch
+print(torch.cuda.device_count())
 torch.cuda.set_device(1)
+print('__Devices')
+call(["nvidia-smi", "--format=csv", "--query-gpu=index,name,driver_version,memory.total,memory.used,memory.free"])
+print('Active CUDA Device: GPU', torch.cuda.current_device())
 print(torch.cuda.current_device())
 
 import numpy as np
