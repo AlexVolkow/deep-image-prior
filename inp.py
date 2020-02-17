@@ -6,6 +6,7 @@ import os
 os.environ['CUDA_VISIBLE_DEVICES'] = '3'
 
 import torch
+torch.cuda.set_device(1)
 print(torch.cuda.current_device())
 
 import numpy as np
