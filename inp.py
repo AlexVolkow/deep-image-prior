@@ -59,6 +59,7 @@ img_pil = crop_image(img_pil, dim_div_by)
 
 img_np = pil_to_np(img_pil)
 img_mask_np = pil_to_np(img_mask_pil)
+img_mask_np = inverse_mask(img_mask_np)
 
 img_mask_var = np_to_torch(img_mask_np).type(dtype)
 
@@ -154,7 +155,7 @@ else:
     INPUT = 'meshgrid'
     input_depth = 2
     LR = 0.01
-    num_iter = 5001
+    num_iter = 2500
     param_noise = False
     show_every = 50
     figsize = 5

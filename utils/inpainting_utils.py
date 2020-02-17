@@ -20,3 +20,6 @@ def get_bernoulli_mask(for_image, zero_fraction=0.95):
     img_mask = np_to_pil(img_mask_np)
     
     return img_mask
+
+def inverse_mask(mask):
+    return np.vectorize(lambda x: 1 if x == 0 else 0)(mask)
