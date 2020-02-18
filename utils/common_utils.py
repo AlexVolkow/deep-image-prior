@@ -91,7 +91,7 @@ def load(path, invert=False):
     """Load PIL image."""
     img = Image.open(path)
     if invert:
-        img = PIL.ImageOps.invert(img)
+        img = PIL.ImageOps.invert(img.convert('RGB'))
     return img
 
 def get_image(path, imsize=-1, invert=False):

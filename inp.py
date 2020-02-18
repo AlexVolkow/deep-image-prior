@@ -42,11 +42,11 @@ dim_div_by = 64
 # mask_path = 'data/inpainting/library_mask.png'
 
 ## Fig 7 (top)
-for i in range(2, 11):
-    img_path = 'data/inpainting/' + str(i) + '/source.JPG'
-    mask_path = 'data/inpainting/' + str(i) + '/mask.JPG'
+for case in range(2, 11):
+    img_path = 'data/inpainting/' + str(case) + '/source.JPG'
+    mask_path = 'data/inpainting/' + str(case) + '/mask.JPG'
     if not os.path.exists(mask_path):
-        mask_path = 'data/inpainting/' + str(i) + '/mask.PNG'
+        mask_path = 'data/inpainting/' + str(case) + '/mask.PNG'
 
     # Another text inpainting example
     # img_path  = 'data/inpainting/peppers.png'
@@ -221,4 +221,4 @@ for i in range(2, 11):
 
     out_np = torch_to_np(net(net_input))
     img_result = np_to_pil(out_np)
-    img_result.save("output" + str(i) + ".jpg")
+    img_result.save("output" + str(case) + ".jpg")
