@@ -159,7 +159,7 @@ for case in range(2, 11):
         LR = 0.01
         num_iter = 20000
         param_noise = False
-        show_every = 50
+        show_every = 20000
         figsize = 5
         reg_noise_std = 0.03
 
