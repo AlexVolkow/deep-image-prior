@@ -42,11 +42,22 @@ dim_div_by = 64
 # mask_path = 'data/inpainting/library_mask.png'
 
 ## Fig 7 (top)
-for case in range(2, 11):
+for case in range(1, 32):
+    if os.path.exists("output" + str(case) + ".jpg"):
+        print("Skip " + str(case))
+        continue
     img_path = 'data/inpainting/' + str(case) + '/source.JPG'
+    if not os.path.exists(img_path):
+        img_path = 'data/inpainting/' + str(case) + '/source.jpg'
     mask_path = 'data/inpainting/' + str(case) + '/mask.JPG'
     if not os.path.exists(mask_path):
         mask_path = 'data/inpainting/' + str(case) + '/mask.PNG'
+    if not os.path.exists(mask_path):
+        mask_path = 'data/inpainting/' + str(case) + '/mask.png'
+    if not os.path.exists(mask_path):
+        mask_path = 'data/inpainting/' + str(case) + '/mask.jpg'
+    if not os.path.exists(img_path):
+        continue
 
     # Another text inpainting example
     # img_path  = 'data/inpainting/peppers.png'
@@ -157,9 +168,9 @@ for case in range(2, 11):
         INPUT = 'meshgrid'
         input_depth = 2
         LR = 0.01
-        num_iter = 20000
+        num_iter = 50000
         param_noise = False
-        show_every = 20000
+        show_every = 50000
         figsize = 5
         reg_noise_std = 0.03
 
