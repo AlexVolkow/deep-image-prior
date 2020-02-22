@@ -170,7 +170,7 @@ for case in range(1, 32):
         LR = 0.01
         num_iter = 50000
         param_noise = False
-        show_every = 2000
+        show_every = 5000
         figsize = 5
         reg_noise_std = 0.03
 
