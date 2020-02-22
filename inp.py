@@ -170,7 +170,7 @@ for case in range(1, 32):
         LR = 0.01
         num_iter = 50000
         param_noise = False
-        show_every = 50000
+        show_every = 2000
         figsize = 5
         reg_noise_std = 0.03
 
@@ -216,8 +216,9 @@ for case in range(1, 32):
 
         print('Iteration %05d    Loss %f' % (i, total_loss.item()), '\r', end='')
         if PLOT and i % show_every == 0:
-            out_np = torch_to_np(out)
-            plot_image_grid([np.clip(out_np, 0, 1)], factor=figsize, nrow=1)
+            temp_out_np = torch_to_np(out)
+            temp_result = np_to_pil(temp_out_np)
+            temp_result.save("output" + str(case) + "_" + str(i) + "_.jpg")
 
         i += 1
 
