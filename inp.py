@@ -55,17 +55,21 @@ for score_type in types:
         base_path = 'data/inpainting/{0}/'.format(score_type)
         
         img_path = base_path + str(case) + '/source.JPG'
+        print("Image path " + img_path)
         if not os.path.exists(img_path):
             img_path = base_path + str(case) + '/source.jpg'
+        if not os.path.exists(img_path):
+            print("Image path not exists")
+            continue
+
         mask_path = base_path + str(case) + '/mask.JPG'
         if not os.path.exists(mask_path):
             mask_path = base_path + str(case) + '/mask.PNG'
+
         if not os.path.exists(mask_path):
             mask_path = base_path + str(case) + '/mask.png'
         if not os.path.exists(mask_path):
             mask_path = base_path + str(case) + '/mask.jpg'
-        if not os.path.exists(img_path):
-            continue
 
         # Another text inpainting example
         # img_path  = 'data/inpainting/peppers.png'
