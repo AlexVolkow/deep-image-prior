@@ -46,6 +46,7 @@ types = ["cars", "people"]
 for score_type in types:
     print("Start " + score_type)
     for case in range(1, 32):
+        print("Case " + str(case))
         output_path = "output {0} {1}.jpg".format(str(score_type), str(case))
         
         if os.path.exists(output_path):
