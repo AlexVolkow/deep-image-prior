@@ -43,14 +43,15 @@ dim_div_by = 64
 
 ## Fig 7 (top)
 types = ["cars", "people"]
-for type in types:
+for score_type in types:
+    print("Start " + score_type)
     for case in range(1, 32):
-        output_path = "output {0} {1}.jpg".format(str(type), str(case))
+        output_path = "output {0} {1}.jpg".format(str(score_type), str(case))
         
         if os.path.exists(output_path):
             print("Skip " + str(case))
             continue
-        base_path = 'data/inpainting/{0}/'.format(type)
+        base_path = 'data/inpainting/{0}/'.format(score_type)
         
         img_path = base_path + str(case) + '/source.JPG'
         if not os.path.exists(img_path):
@@ -221,7 +222,7 @@ for type in types:
             if PLOT and i % show_every == 0:
                 temp_out_np = torch_to_np(out)
                 temp_result = np_to_pil(temp_out_np)
-                temp_path = "output {0} {1}_{2}.jpg".format(str(type), str(case), str(i))
+                temp_path = "output {0} {1}_{2}.jpg".format(str(score_type), str(case), str(i))
                 temp_result.save(temp_path)
 
             i += 1
