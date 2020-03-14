@@ -42,10 +42,10 @@ dim_div_by = 64
 # mask_path = 'data/inpainting/library_mask.png'
 
 ## Fig 7 (top)
-types = ["cars", "people"]
+types = ["cars"]
 for score_type in types:
     print("Start " + score_type)
-    for case in range(1, 32):
+    for case in range(7, 32):
         print("Case " + str(case))
         output_path = "output {0} {1}.jpg".format(str(score_type), str(case))
         
@@ -178,9 +178,9 @@ for score_type in types:
             INPUT = 'meshgrid'
             input_depth = 2
             LR = 0.01
-            num_iter = 50000
+            num_iter = 30000
             param_noise = False
-            show_every = 5000
+            show_every = 50
             figsize = 5
             reg_noise_std = 0.03
 
