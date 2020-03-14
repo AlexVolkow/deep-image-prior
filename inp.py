@@ -184,12 +184,10 @@ for score_type in types:
             figsize = 5
             reg_noise_std = 0.03
 
-            net = skip(input_depth, img_np.shape[0],
-                       num_channels_down=[128] * 5,
-                       num_channels_up=[128] * 5,
-                       num_channels_skip=[0] * 5,
-                       upsample_mode='nearest', filter_skip_size=1, filter_size_up=3, filter_size_down=3,
-                       need_sigmoid=True, need_bias=True, pad=pad, act_fun='LeakyReLU').type(dtype)
+            net = ResNet(input_depth, img_np.shape[0], 8, 32, need_sigmoid=True, act_fun='LeakyReLU')
+
+            LR = 0.001
+            param_noise = False
 
         net = net.type(dtype)
         net_input = get_noise(input_depth, INPUT, img_np.shape[1:]).type(dtype)
