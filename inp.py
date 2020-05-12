@@ -42,10 +42,10 @@ dim_div_by = 64
 # mask_path = 'data/inpainting/library_mask.png'
 
 ## Fig 7 (top)
-types = ["cars"]
+types = ["bike"]
 for score_type in types:
     print("Start " + score_type)
-    for case in range(7, 32):
+    for case in range(1, 17):
         print("Case " + str(case))
         output_path = "output {0} {1}.jpg".format(str(score_type), str(case))
         
