@@ -178,7 +178,7 @@ for score_type in types:
             INPUT = 'meshgrid'
             input_depth = 2
             LR = 0.01
-            num_iter = 3001
+            num_iter = 30001
             param_noise = False
             show_every = 500
             figsize = 5
