@@ -9,7 +9,7 @@ import os
 
 import torch
 
-device = torch.device('cuda:1')
+device = torch.device('cuda:2')
 torch.cuda.set_device(device)
 print('Active CUDA Device: GPU', torch.cuda.current_device())
 print(torch.cuda.current_device())
@@ -45,7 +45,7 @@ dim_div_by = 64
 types = ["bike"]
 for score_type in types:
     print("Start " + score_type)
-    for case in range(1, 17):
+    for case in range(1, 2):
         print("Case " + str(case))
         output_path = "output {0} {1}.jpg".format(str(score_type), str(case))
         
